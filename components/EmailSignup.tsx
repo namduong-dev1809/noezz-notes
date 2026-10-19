@@ -10,7 +10,9 @@ export default function EmailSignup() {
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const email = String(new FormData(e.currentTarget).get("email") ?? "");
-    setState(isValidEmail(email) ? "done" : "error");
+    if (isValidEmail(email)) return setState("done");
+    setState("error");
+    e.currentTarget.querySelector("input")?.focus(); // send keyboard and screen-reader users straight to the field to fix
   }
 
   if (state === "done") {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatUsd, monthlyPrice, plans, YEARLY_DISCOUNT, type Billing } from "@/lib/plans";
+import Icon from "./Icon";
 
 export default function Pricing() {
   const [billing, setBilling] = useState<Billing>("monthly");
@@ -9,13 +10,12 @@ export default function Pricing() {
   return (
     <div>
       <div className="flex justify-center">
-        <div role="radiogroup" aria-label="Billing period" className="inline-flex rounded-full border border-line bg-panel p-1 text-sm">
+        <div role="group" aria-label="Billing period" className="inline-flex rounded-full border border-line bg-panel p-1 text-sm">
           {(["monthly", "yearly"] as Billing[]).map((b) => (
             <button
               key={b}
               type="button"
-              role="radio"
-              aria-checked={billing === b}
+              aria-pressed={billing === b}
               onClick={() => setBilling(b)}
               className={`rounded-full px-5 py-2 capitalize transition-colors ${billing === b ? "bg-text text-bg" : "text-muted hover:text-text"}`}
             >
@@ -47,9 +47,7 @@ export default function Pricing() {
               <ul className="mt-6 space-y-3 text-sm">
                 {plan.features.map((f) => (
                   <li key={f} className="flex gap-3">
-                    <span aria-hidden="true" className="text-cyan">
-                      ✓
-                    </span>
+                    <Icon name="check" className="mt-0.5 size-4 shrink-0 text-cyan" />
                     {f}
                   </li>
                 ))}

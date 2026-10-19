@@ -1,6 +1,7 @@
 import AppMockup from "@/components/AppMockup";
 import Pricing from "@/components/Pricing";
 import EmailSignup from "@/components/EmailSignup";
+import Icon, { type IconName } from "@/components/Icon";
 
 const nav = [
   { href: "#features", label: "Features" },
@@ -12,13 +13,13 @@ const nav = [
 // made-up company names for the "trusted by" strip
 const logos = ["Kitecraft", "Orbitly", "Pinebase", "Tidewave", "Quillstack", "Lumaport"];
 
-const features = [
-  { icon: "◎", title: "Records any call", text: "Joins Zoom, Google Meet and Teams, or records in-person meetings from your laptop." },
-  { icon: "✦", title: "Summaries in seconds", text: "A clear summary, key decisions and open questions as soon as the call ends." },
-  { icon: "✓", title: "Action items, assigned", text: "Spots who promised what and when, and sends reminders before the deadline." },
-  { icon: "⌕", title: "Search every meeting", text: "Ask “what did we decide about pricing?” and jump to the exact moment." },
-  { icon: "⇄", title: "Works with your tools", text: "Push notes to Notion, Slack, Linear or email with one click." },
-  { icon: "◈", title: "Private by default", text: "Your recordings are encrypted and never used to train models." },
+const features: { icon: IconName; title: string; text: string }[] = [
+  { icon: "mic", title: "Records any call", text: "Joins Zoom, Google Meet and Teams, or records in-person meetings from your laptop." },
+  { icon: "sparkles", title: "Summaries in seconds", text: "A clear summary, key decisions and open questions as soon as the call ends." },
+  { icon: "listCheck", title: "Action items, assigned", text: "Spots who promised what and when, and sends reminders before the deadline." },
+  { icon: "search", title: "Search every meeting", text: "Ask “what did we decide about pricing?” and jump to the exact moment." },
+  { icon: "arrows", title: "Works with your tools", text: "Push notes to Notion, Slack, Linear or email with one click." },
+  { icon: "lock", title: "Private by default", text: "Your recordings are encrypted and never used to train models." },
 ];
 
 const steps = [
@@ -124,7 +125,7 @@ export default function Home() {
             {features.map((f) => (
               <div key={f.title} className="bg-bg p-7">
                 <span aria-hidden="true" className="grid size-10 place-items-center rounded-lg border border-line bg-panel text-violet">
-                  {f.icon}
+                  <Icon name={f.icon} />
                 </span>
                 <h3 className="mt-5 font-medium">{f.title}</h3>
                 <p className="mt-2 text-sm text-muted">{f.text}</p>
